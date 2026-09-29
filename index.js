@@ -65,6 +65,15 @@ http.createServer((req, res) => {
     console.log(`🌐 Web server running on port ${PORT} (Render Web Service ready)`);
 });
 
+// Auto Keep-Alive: Ping every 5 minutes so Render never sleeps
+const APP_URL = process.env.RENDER_EXTERNAL_URL || 'https://silent-manager-bot.onrender.com';
+setInterval(() => {
+    fetch(APP_URL)
+        .then(r => r.json())
+        .then(d => console.log(`[Keep-Alive] Pinged: status ${d.status}, uptime ${d.uptime}s`))
+        .catch(e => console.error('[Keep-Alive]', e.message));
+}, 5 * 60 * 1000);
+
 // -------------------------------------------------------------
 // 2. CONFIGURATION (Pre-filled + .env override)
 // -------------------------------------------------------------
