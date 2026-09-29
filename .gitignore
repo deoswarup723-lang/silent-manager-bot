@@ -1,0 +1,10 @@
+# Dependencies (Hosting will auto-install these with npm install)
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
